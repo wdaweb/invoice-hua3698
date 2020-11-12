@@ -29,7 +29,7 @@
 
     <div class="col-8 d-flex justify-content-between p-3 mx-auto border">
         <form action="api/add_invoice.php" method="post">
-            <div>日期：<input type="text" name="date"></div>
+            <div>日期：<input type="date" name="date"></div>
             期別：<select name="period">
                 <option value="1">1,2月</option>
                 <option value="2">3,4月</option>
