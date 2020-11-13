@@ -21,8 +21,8 @@ $rows=$pdo->query($sql)->fetchAll();
         <td><?=$row['date'];?></td>
         <td><?=$row['payment'];?></td>
         <td>
-            <button class="btn btn-sm btn-primary">編輯</button>
-            <button class="btn btn-sm btn-danger">刪除</button>
+            <a class="text-light" href="?do=edit_invoice&id=<?=$row['id'];?>"><button class="btn btn-sm btn-primary">編輯</button></a>
+            <a class="text-light" href="?do=delete_invoice&id=<?=$row['id'];?>"><button class="btn btn-sm btn-danger">刪除</button></a>
         </td>
     </tr>
     <?php
