@@ -34,7 +34,6 @@ echo $sql;
 $pdo->exec($sql); //execute執行
 // select 用pdo query
 
-echo "新增完成";
-header("location:../index.php");   //回到上一層用".."
+header("location:../index.php?do=invoice_list");   //回到上一層用".."
 
 ?>
