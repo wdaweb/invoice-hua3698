@@ -13,8 +13,8 @@ include_once "base.php";
         <li class="list-group-item">消費金額：<?=$inv['payment'];?></li>
     </ul>
     <div class="mt-4 text-light">
-        <a href="api/del.php?&id=<?=$_GET['id'];?>"><button class="btn-danger">確認刪除</button></a>
-        <a href="?do=invoice_list"><button class="btn-warning">取消</button></a> 
+        <a href="api/del.php?&id=<?=$_GET['id'];?>"><button class="btn-sm btn-danger">確認刪除</button></a>
+        <a href="?do=invoice_list"><button class="btn-sm btn-warning">取消</button></a> 
     </div>
 </div>
 

@@ -18,7 +18,7 @@ $inv=$pdo->query($sql)->fetch();
     <div>消費日期：<input type="date" name="date" value="<?=$inv['date'];?>"></div>
     <div>消費金額：<input type="text" name="payment" value="<?=$inv['payment'];?>"></div>
     <div>
-    <input type="submit" value="確認修改">
-    <input type="reset" value="重置">
+    <input type="submit" value="確認修改" class="btn btn-sm btn-primary">
+    <input type="reset" value="重置" class="btn btn-sm btn-secondary">
     </div>
 </form>
