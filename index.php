@@ -13,7 +13,8 @@
         a:link {
             text-decoration: none;
         }
-        .number{
+
+        .number {
             font-size: 1.2rem;
             color: red;
             font-weight: bolder;
@@ -22,22 +23,25 @@
 </head>
 
 <body class="p-5">
-    <h3 class="text-center">統一發票紀錄與對獎</h3>
+
+    <?php
+    $month = [
+        1 => "1,2月",
+        2 => "3,4月",
+        3 => "5,6月",
+        4 => "7,8月",
+        5 => "9,10月",
+        6 => "11,12月"
+    ];
+    $m = ceil(date('m') / 2);
+    ?>
+    <h3 class="text-center">統一發票紀錄與對獎 <?= $month[$m]; ?></h3>
 
     <div class="container my-4">
         <div class="col-lg-8 col-md-12 d-flex justify-content-between p-3 mx-auto border">
-            <?php
-            $month = [
-                1 => "1,2月",
-                2 => "3,4月",
-                3 => "5,6月",
-                4 => "7,8月",
-                5 => "9,10月",
-                6 => "11,12月"
-            ];
-            $m = ceil(date('m') / 2);
-            ?>
-            <div class="text-center"><?= $month[$m]; ?></div>
+            <div class="text-center">
+                <a href="index.php">回首頁</a>
+            </div>
             <div class="text-center">
                 <a href="?do=invoice_list">當期發票</a>
             </div>
@@ -47,15 +51,12 @@
             <div class="text-center">
                 <a href="?do=add_awards">輸入獎號</a>
             </div>
-            <div class="text-center">
-                <a href="index.php">回首頁</a>
-            </div>
         </div>
 
-        <div class="col-lg-8 col-md-12 d-flex p-3 mx-auto border">
+        <div class="col-lg-8 col-md-12 p-3 mx-auto border">
             <?php
             //這塊會根據輸入網址的值顯示不同區塊
-            
+
             if (isset($_GET['do'])) {
                 $file = $_GET['do'] . ".php";
                 include $file;
