@@ -1,6 +1,7 @@
+<!-- 輸入獎號頁 -->
 <div class="container">
 <form action="api/add_award_number.php" method="post">
-    <table class="table table-bordered table-sm mx-auto" summary="統一發票中獎號碼單">
+    <table class="table table-bordered table-sm" summary="統一發票中獎號碼單">
         <tbody>
             <tr>
                 <th id="months">年/月份</th>

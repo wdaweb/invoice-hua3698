@@ -1,4 +1,6 @@
 <?php
+//兌獎頁
+
 include_once "base.php";
 
 if(isset($_GET['pd'])){
@@ -33,7 +35,9 @@ foreach ($awards as $award) {
     }
 }
 ?>
-<table class="table table-bordered table-sm mx-auto" summary="統一發票中獎號碼單">
+
+<div class="container">
+<table class="table table-bordered table-sm" summary="統一發票中獎號碼單">
         <tbody>
             <tr>
                 <th id="months">年/月份</th>
@@ -94,3 +98,4 @@ foreach ($awards as $award) {
             </tr>
         </tbody>
     </table>
+</div>

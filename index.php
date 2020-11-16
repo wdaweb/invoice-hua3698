@@ -38,18 +38,18 @@
     <h3 class="text-center">統一發票紀錄與對獎 <?= $month[$m]; ?></h3>
 
     <div class="container my-4">
-        <div class="col-lg-8 col-md-12 d-flex justify-content-between p-3 mx-auto border">
-            <div class="text-center">
-                <a href="index.php">回首頁</a>
+        <div class="nav col-lg-8 col-md-12 d-flex justify-content-around p-3 mx-auto border">
+            <div class="nav-item text-center">
+                <a class="nav-link" href="index.php">回首頁</a>
             </div>
-            <div class="text-center">
-                <a href="?do=invoice_list">當期發票</a>
+            <div class="nav-item text-center">
+                <a class="nav-link" href="?do=invoice_list">當期發票</a>
             </div>
-            <div class="text-center">
-                <a href="?do=award_numbers">對獎</a>
+            <div class="nav-item text-center">
+                <a class="nav-link" href="?do=award_numbers">對獎</a>
             </div>
-            <div class="text-center">
-                <a href="?do=add_awards">輸入獎號</a>
+            <div class="nav-item text-center">
+                <a class="nav-link" href="?do=add_awards">輸入獎號</a>
             </div>
         </div>
 
