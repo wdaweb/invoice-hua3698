@@ -22,15 +22,17 @@
                 <td headers="specialPrize" class="number"><input type="number" name="special_prize" min="00000001" max="99999999"></td>
             </tr>
             <tr>
-                <td headers="specialPrize"> 同期統一發票收執聯8位數號碼與特別獎號碼相同者獎金1,000萬元 </td>
+                <td>同期統一發票收執聯8位數號碼與特別獎號碼相同者獎金1,000萬元</td>
             </tr>
+            
             <tr>
                 <th id="grandPrize" rowspan="2">特獎</th>
                 <td headers="grandPrize" class="number"><input type="number" name="grand_prize" min="00000001" max="99999999"></td>
             </tr>
             <tr>
-                <td headers="grandPrize"> 同期統一發票收執聯8位數號碼與特獎號碼相同者獎金200萬元 </td>
+                <td>同期統一發票收執聯8位數號碼與特獎號碼相同者獎金200萬元</td>
             </tr>
+            
 
             <tr>
                 <th id="firstPrize" rowspan="2">頭獎</th>
@@ -42,8 +44,9 @@
                 </td>
             </tr>
             <tr>
-                <td headers="firstPrize"> 同期統一發票收執聯8位數號碼與頭獎號碼相同者獎金20萬元 </td>
+                <td>同期統一發票收執聯8位數號碼與特獎號碼相同者獎金20萬元</td>
             </tr>
+            
             <tr>
                 <th id="addSixPrize">增開六獎</th>
                 <td headers="addSixPrize" class="number">

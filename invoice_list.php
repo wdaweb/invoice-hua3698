@@ -7,7 +7,7 @@ $rows=$pdo->query($sql)->fetchAll();
 ?>
 
 <table class="table text-center">
-    <tr>
+    <tr style="background:#b4e2e8">
         <td>發票號碼</td>
         <td>消費日期</td>
         <td>消費金額</td>
