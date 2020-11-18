@@ -19,10 +19,7 @@
             color: red;
             font-weight: bolder;
         }
-        th,  td {
-        vertical-align: middle !important;
-        text-align: center !important;
-    }
+
     </style>
 </head>
 
@@ -54,6 +51,9 @@
             </div>
             <div class="text-center">
                 <a href="?do=add_awards">輸入獎號</a>
+            </div>
+            <div class="text-center">
+                <a href="#">領獎方式</a>  <!-- https://invoice.cof.tw/lo.html -->
             </div>
         </div>
 

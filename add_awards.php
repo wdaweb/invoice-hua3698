@@ -1,4 +1,10 @@
 <!-- 輸入獎號頁 -->
+<style>
+    th{
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+</style>
 <div class="container">
 <form action="api/add_award_number.php" method="post">
     <table class="table table-bordered table-sm" summary="統一發票中獎號碼單">
@@ -6,7 +12,8 @@
             <tr>
                 <th id="months">年/月份</th>
                 <!-- 可以用select option、toggle -->
-                <td headers="months" class="title"><input type="number" name="year" min="<?= date('Y') - 1; ?>" max="<?= date('Y') + 1; ?>" step="1" value="<?= date('Y'); ?>">年 /
+                <td headers="months" class="title">
+                <input type="number" name="year" min="<?= date('Y') - 1; ?>" max="<?= date('Y') + 1; ?>" step="1" value="<?= date('Y'); ?>">年 /
                     <select name="period" id="">
                         <option value="1">01 ~ 02</option>
                         <option value="2">03 ~ 04</option>

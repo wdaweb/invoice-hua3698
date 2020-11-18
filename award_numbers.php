@@ -35,9 +35,26 @@ foreach ($awards as $award) {
     }
 }
 ?>
+<style>
+    th,
+    td {
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+</style>
 
 <div class="container">
-    <table class="table table-bordered table-sm table-hover" summary="統一發票中獎號碼單">
+    <div class="nav justify-content-around">
+    <a href="#"><li>1,2月</li></a>
+    <a href="#"><li>3,4月</li></a>
+    <a href="#"><li>5,6月</li></a>
+    <a href="#"><li>7,8月</li></a>
+    <a href="#"><li>9,10 月</li></a>
+    <a href="#"><li>11,12月</li></a>
+
+    </div>
+
+    <table class="table table-bordered table-sm table-hover my-3" summary="統一發票中獎號碼單">
         <tbody>
             <tr class="table-info">
                 <th>獎項</th>
@@ -61,12 +78,12 @@ foreach ($awards as $award) {
             <tr>
                 <th id="specialPrize">特別獎</th>
                 <td class="number"><?= $special; ?></td>
-                <td>與特別獎號碼相同者獎金1,000萬元 </td>
+                <td>與特別獎號碼相同者獎金1,000萬元</td>
             </tr>
             <tr>
                 <th id="grandPrize">特獎</th>
                 <td class="number"><?= $grand; ?></td>
-                <td>與特獎號碼相同者獎金200萬元 </td>
+                <td>與特獎號碼相同者獎金200萬元</td>
             </tr>
 
             <tr>
@@ -78,7 +95,7 @@ foreach ($awards as $award) {
                         echo $f . "<br>";
                     }
                     ?>
-                <td>與頭獎號碼相同者獎金20萬元 </td>
+                <td>與頭獎號碼相同者獎金20萬元</td>
                 </td>
             </tr>
             <tr>
@@ -89,7 +106,7 @@ foreach ($awards as $award) {
                         echo $s . "<br>";
                     }
                     ?>
-                <td>末3碼與增開六獎相同者獎金200元 </td>
+                <td>末3碼與增開六獎相同者獎金200元</td>
                 </td>
             </tr>
         </tbody>
