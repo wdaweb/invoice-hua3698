@@ -12,9 +12,8 @@ $rows = $pdo->query($sql)->fetchAll();
     <a href="#"><li>7,8月</li></a>
     <a href="#"><li>9,10 月</li></a>
     <a href="#"><li>11,12月</li></a>
-
 </div>
-<table class="table text-center">
+<table class="table text-center my-3">
     <tr>
         <td>發票號碼</td>
         <td>消費日期</td>
