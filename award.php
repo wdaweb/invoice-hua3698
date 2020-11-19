@@ -1,5 +1,6 @@
 <?php
 //單一發票對獎
+
 include_once "base.php";
 
 $inv_id = $_GET['id'];

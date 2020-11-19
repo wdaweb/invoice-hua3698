@@ -44,15 +44,14 @@ foreach ($awards as $award) {
 </style>
 
 <div class="container">
-    <div class="nav justify-content-around">
-    <a href="#"><li>1,2月</li></a>
-    <a href="#"><li>3,4月</li></a>
-    <a href="#"><li>5,6月</li></a>
-    <a href="#"><li>7,8月</li></a>
-    <a href="#"><li>9,10 月</li></a>
-    <a href="#"><li>11,12月</li></a>
-
-    </div>
+    <!-- <div class="nav justify-content-around">
+        <a href="?do=award_numbers&pd=2020-1"><li>1,2月</li></a>
+        <a href="?do=award_numbers&pd=2020-2"><li>3,4月</li></a>
+        <a href="?do=award_numbers&pd=2020-3"><li>5,6月</li></a>
+        <a href="?do=award_numbers&pd=2020-4"><li>7,8月</li></a>
+        <a href="?do=award_numbers&pd=2020-5"><li>9,10 月</li></a>
+        <a href="?do=award_numbers&pd=2020-6"><li>11,12月</li></a>
+    </div> -->
 
     <table class="table table-bordered table-sm table-hover my-3" summary="統一發票中獎號碼單">
         <tbody>
@@ -102,7 +101,7 @@ foreach ($awards as $award) {
                     末五碼與頭獎號碼相同者獎金4千元<br>
                     末四碼與頭獎號碼相同者獎金1千元<br>
                     末三碼與頭獎號碼相同者獎金2百元
-                    </td>
+                </td>
                 </td>
             </tr>
             <tr>
@@ -177,4 +176,5 @@ foreach ($awards as $award) {
             </tr>
         </tbody> -->
     </table>
+    <a href="?do=all_awards&year=<?=$year;?>&period=<?=$period;?>"><button class="btn btn-primary btn-sm m-auto">對獎</button></a>
 </div>
