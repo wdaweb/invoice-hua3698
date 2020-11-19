@@ -51,7 +51,7 @@ foreach ($awards as $award) {
             for ($i = 5; $i >= 0; $i--) {
                 $target = mb_substr($award['number'], $i, 8 - $i,'utf8');
                 $mynumber = mb_substr($number, $i, 8 - $i,'utf8');
-                if ($target == $number) {
+                if ($target == $mynumber) {
                     $result=$i;
                 } else {
                     break;

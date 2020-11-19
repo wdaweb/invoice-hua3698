@@ -43,16 +43,18 @@
             <div class="text-center">
                 <a href="index.php">回首頁</a>
             </div>
-            <div class="text-center dropdown">
-                <a href="?do=invoice_list" class="dropdown-toggle" data-toggle="dropdown" >當期發票</a>
+            <div class="text-center">
+                <a href="?do=invoice_list" >當期發票</a>
+                <a href="?do=invoice_list" class="dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" ></a>
                 <div class="dropdown-menu">
                     <a href="#" class="dropdown-item">1111</a>
                     <a href="#" class="dropdown-item">1111</a>
                     <a href="#" class="dropdown-item">1111</a>
                 </div>
             </div>
-            <div class="text-center dropdown">
-                <a href="?do=award_numbers" class="dropdown-toggle" data-toggle="dropdown" >對獎</a>
+            <div class="text-center btn-group">
+                <a href="?do=award_numbers" type="button">對獎</a>
+                <a href="?do=award_numbers" type="button" class="dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" ></a>
                 <div class="dropdown-menu">
                     <a href="?do=award_numbers&pd=2020-1" class="dropdown-item"><li>1,2月</li></a>
                     <a href="?do=award_numbers&pd=2020-2" class="dropdown-item"><li>3,4月</li></a>
@@ -61,7 +63,7 @@
                     <a href="?do=award_numbers&pd=2020-5" class="dropdown-item"><li>9,10 月</li></a>
                     <a href="?do=award_numbers&pd=2020-6" class="dropdown-item"><li>11,12月</li></a>
                 </div>
-            </div>
+            </div>            
             <div class="text-center">
                 <a href="?do=add_awards">輸入獎號</a>
             </div>

@@ -6,6 +6,6 @@ $pdo=new PDO($dsn,'root','');
 date_default_timezone_set("Asia/Taipei");
 session_start();
 
-$awardStr=['頭','一','二','三','四','五','六'];
+$awardStr=['頭','二','三','四','五','六'];
 
 ?>
