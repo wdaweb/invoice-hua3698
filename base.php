@@ -8,15 +8,15 @@ session_start();
 
 $awardStr=['頭','二','三','四','五','六'];
 
-function accept($field,$meg='此欄位不得為空'){
+function accept($field,$msg='此欄位不得為空'){
     if(empty($_POST[$field])){
-        $_SESSION['err'][$field]['empty']=$meg;
+        $_SESSION['err'][$field]['empty']=$msg;
     }
 }
 
-function length($field,$min,$max,$meg="長度不足"){
+function length($field,$min,$max,$msg="長度不足"){
     if(strlen($_POST[$field])>$max || strlen($_POST[$field]) < $min){
-        $_SESSION['err'][$field]['len']=$meg;
+        $_SESSION['err'][$field]['len']=$msg;
     }
 
 }
