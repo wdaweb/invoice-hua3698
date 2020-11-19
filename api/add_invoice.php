@@ -3,6 +3,7 @@
 //將發票的號碼及相關資訊寫入資料庫
 
 include_once "../base.php";
+$_SESSION['err']=[];
 
 // foreach ($_POST as $key => $value) {
 //     $tmp[]=$key;
@@ -27,13 +28,21 @@ echo "<pre>";
 print_r(array_keys($_POST));
 echo "<pre>";
 
-echo "<br>";
+accept('number','發票號碼的欄位必填');
+length('number',8,8,'長度不足');
 
 $sql="insert into invoices (`".implode("`,`",array_keys($_POST))."`) values('".implode("','",$_POST)."')";
 echo $sql;
 $pdo->exec($sql); //execute執行
 // select 用pdo query
 
-header("location:../index.php?do=invoice_list");   //回到上一層用".."
+// header("location:../index.php?do=invoice_list");   //回到上一層用".."
+
+if(empty($_SESSION['err'])){
+    $pdo->exec($sql);
+    header("location:../index.php?do=invoice_list");
+}else{
+    header("location:../index.php");
+}
 
 ?>

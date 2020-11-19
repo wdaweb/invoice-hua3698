@@ -1,3 +1,5 @@
+<?php include_once "base.php";?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,5 +89,5 @@
     </div>
 
 </body>
-
 </html>
+<?php $_SESSION['err']=[];  //清除session ?>
