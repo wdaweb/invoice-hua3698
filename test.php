@@ -2,70 +2,79 @@
 
 include_once "base.php";
 
-
-
-//target :印出下方語句
-echo "欄位1='值1' && 欄位2='值2' && id='9'";
-
-//solution :利用一個暫存的陣列來存放語句的片段
-$array=['欄位1'=>'值1','欄位2'=>'值2','id'=>'9'];
-foreach ($array as $key => $value) {
-    $tmp[]=sprintf("`%s`='%s'",$key,$value);
-    // $tmp[]="`".$key."`='".$value."'";
-}
-echo implode("&&",$tmp);
-
-echo "<br>";
-
-//寫法3. 
-function find($table,$id){
+function find($table, $id)
+{
     global $pdo;
-    $sql_part="select * from $table where";
-    if(is_array($id)){
+    $sql_part = "select * from $table where";
+    if (is_array($id)) {
         foreach ($id as $key => $value) {
-            $tmp[]=sprintf("`%s`='%s'",$key,$value);
+            $tmp[] = sprintf("`%s`='%s'", $key, $value);
         }
-        $sql=$sql_part.implode("&&",$tmp);
-    }else{
-        $sql=$sql_part."id='$id'";
+        $sql = $sql_part . implode("&&", $tmp);
+    } else {
+        $sql = $sql_part . "id='$id'";
     }
-    $row=$pdo->query($sql)->fetch();
+    $row = $pdo->query($sql)->fetch();
 
     return $row;
 }
 
-$row=find('invoices',['code'=>'AC','number'=>'93733665']);
-echo $row['code'].$row['number']."<br>";
 
 
-//寫法2. 加入判斷式的變化 
-// function find($table,$id){
-//     global $pdo;
-//     if(is_numeric($id)){
-//         $sql="select * from $table where id=$id";
-//     }else{
-//         $sql="select * from $table where $id";
-//     }
-//     $row=$pdo->query($sql)->fetch();
+// ...$arg 會放進陣列裡存放，因此也可以是不下參數->空陣列
+function all($table, ...$arg)
+{
+    global $pdo;
+    $sql_part = "select * from $table";
 
-//     return $row;
-// }
+    if (isset($arg[0])) {
+        if (is_array($arg[0])) {
+            //製作會在where後面的句子 -> where ` `=' ';
+            foreach ($arg[0] as $key => $value) {
+                $tmp[] = sprintf("`%s`='%s'", $key, $value);
+            }
+            $sql = $sql_part . " where " . implode("&&", $tmp);
+        } else {
+            $sql = $sql_part . $arg[0];
+        }
+    } else {
+        $sql = $sql_part;
+    }
 
-//原始寫法
-// function find($table,$def){
-//     global $pdo;
-//     $sql="select * from $table where $def";
-//     $row=$pdo->query($sql)->fetch();
+    if (isset($arg[1])) {
+        //製作皆在最後面的句子字串
+        $sql = $sql_part . $arg[1];
+    }
+    echo "<hr>" . $sql . "<br>";
+    return $pdo->query($sql)->fetchAll();
+}
 
-//     return $row;
-// }
-
-$row=find('invoices',9);
-echo $row['code'].$row['number']."<br>"; 
-
-$row=find('invoices',"code='AC' && number='93733665'");
-echo $row['code'].$row['number']."<br>";
-//函式本身如果有return值，return的內容會直接給到find，因此find相當於是一個變數
+all('invoices')[10];
+all('invoices', ['code' => 'AB'])[10];
+all('invoices', " order by date desc")[10];
+all('invoices', ['period' => '2', 'payment' => '340'], " limit 5");
 
 
-?>
+function del($table, $id){
+    global $pdo;
+    $sql_part = "delete from $table where";
+
+    if (is_array($id)) {
+        //製作會在where後面的句子 -> where ` `=' ';
+        foreach ($id as $key => $value) {
+            $tmp[] = sprintf("`%s`='%s'", $key, $value);
+        }
+        $sql = $sql_part . implode("&&", $tmp);
+    } else {
+        $sql = $sql_part . $id;
+    }
+
+    echo "<hr>" . $sql . "<br>";
+    $row = $pdo->exec($sql);
+    return $row;
+}
+
+$def = ['code' => 'FF'];
+echo del('invoices', $def);  //echo後會回傳影響了幾列
+
+del('invoices',['payment'=>'15001']); 
