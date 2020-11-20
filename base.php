@@ -34,13 +34,13 @@ function errFeedBack($field){
 }
 
 
-function find($table,$def){
-    global $pdo;
-    $sql="select * from $table where $def";
-    $row=$pdo->query($sql)->fetch();
+// function find($table,$def){
+//     global $pdo;
+//     $sql="select * from $table where $def";
+//     $row=$pdo->query($sql)->fetch();
 
-    return $row;
-}
+//     return $row;
+// }
 
 
 ?>
