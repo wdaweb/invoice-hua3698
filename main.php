@@ -8,12 +8,12 @@
         <div class="form-group row text-center">
             <label class="col-form-label col-5 col-md-3">期　　別：</label>
             <select name="period" class="col-6 col-md-4 custom-select">
-                <option value="1">1,2月</option>
-                <option value="2">3,4月</option>
-                <option value="3">5,6月</option>
-                <option value="4">7,8月</option>
-                <option value="5">9,10月</option>
-                <option value="6">11,12月</option>
+                <option value="1">1、2月</option>
+                <option value="2">3、4月</option>
+                <option value="3">5、6月</option>
+                <option value="4">7、8月</option>
+                <option value="5">9、10月</option>
+                <option value="6">11、12月</option>
             </select>
         </div>
         <div class="form-group row text-center">
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group row text-center">
             <label class="col-form-label col-5 col-md-3">發票金額：</label>
-            <input type="number" name="payment" class="col-6 col-md-4 form-control">
+            <input type="number" name="payment" class="form-control col-6 col-md-4">
         </div>
         <div class="text-center">
             <!-- <input type="submit" value="送出" class="btn btn-sm btn-primary"> -->
