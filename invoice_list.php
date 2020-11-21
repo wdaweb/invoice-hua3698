@@ -1,10 +1,10 @@
+<h3 class="text-center">發票存摺</h3>
 <?php
 include_once "base.php";
 
 $period = ceil(date("m") / 2);
 
 $sql = "select * from `invoices` where period='$period' order by date desc";
-
 $rows = $pdo->query($sql)->fetchAll();
 ?>
 <div class="navbar d-flex justify-content-around p-0">
@@ -19,7 +19,7 @@ $rows = $pdo->query($sql)->fetchAll();
     <a href="">
         <?php
 
-        echo date("Y") . "年{$month[$m]}";
+        echo date("Y") . "年{$month[$period]}";
 
         ?>
     </a>
@@ -29,9 +29,8 @@ $rows = $pdo->query($sql)->fetchAll();
             <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z" />
         </svg>
     </a>
-
 </div>
-<table class="table text-center my-3">
+<table class="table text-center">
     <tr>
         <td>發票號碼</td>
         <td>消費日期</td>
