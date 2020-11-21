@@ -1,3 +1,4 @@
+<p>button->alert (javascript)</p>
 <?php
 //對獎頁
 

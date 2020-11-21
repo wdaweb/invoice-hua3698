@@ -1,29 +1,50 @@
-<h3 class="text-center">發票存摺</h3>
 <?php
 include_once "base.php";
 
-$period = ceil(date("m") / 2);
+if(isset($_GET['y']) && isset($_GET['p'])){
+    $year=$_GET['y'] ;
+    $period =$_GET['p'];
+}else{
+    $year=date("Y");
+    $period = ceil(date("m") / 2);
+}
 
-$sql = "select * from `invoices` where period='$period' order by date desc";
+if($period>=6){
+    $nextPeriod=1;
+    $nextYear=$year+1;
+}else{
+    $nextPeriod=$period+1;
+    $nextYear=$year;
+}
+if($period<=1){
+    $lastPeriod=6;
+    $lastYear=$year-1;
+}else{
+    $lastPeriod=$period-1;
+    $lastYear=$year;
+}
+
+// $period = ceil(date("m") / 2);
+$sql = "select * from `invoices` where period='$period' && left(`date`,4)='$year' order by date desc";
 $rows = $pdo->query($sql)->fetchAll();
+
 ?>
+
+
+<h3 class="text-center">發票存摺</h3>
 <div class="navbar d-flex justify-content-around p-0">
-    <!-- <a href="index.php?y=<?= $lastYear ?>&m=<?= $lastMonth ?>" class="animate" style="text-decoration: none;"><< Last Month</a>  -->
-    <a href="#" style="text-decoration: none;">
+    <a href="?do=invoice_list&y=<?=$lastYear?>&p=<?=$lastPeriod?>" style="text-decoration: none;">
         <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
             <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
         </svg>
     </a>
-
     <a href="">
         <?php
-
-        echo date("Y") . "年{$month[$period]}";
-
+        echo date("Y", strtotime($year)) . "年{$month[$period]}";
         ?>
     </a>
-    <a href="#" style="text-decoration: none;">
+    <a href="?do=invoice_list&y=<?=$nextYear?>&p=<?=$nextPeriod?>" style="text-decoration: none;">
         <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
             <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z" />
@@ -38,7 +59,27 @@ $rows = $pdo->query($sql)->fetchAll();
         <td>操作</td>
     </tr>
     <?php
-    foreach ($rows as $row) {
+
+//分頁
+$sql_count="select count(*) from `invoices` where period='$period' && left(`date`,4)='$year'";
+$rows_count=$pdo->query($sql_count)->fetch();
+$per=10;
+$pages=ceil($rows_count[0]/$per);
+
+if(!isset($_GET["page"])){ 
+    $page=1; //設定起始頁 
+} else { 
+    $page = intval($_GET["page"]); //確認頁數只能夠是數值資料 
+    $page = ($page > 0) ? $page : 1; //確認頁數大於零 
+    $page = ($pages > $page) ? $page : $pages; //確認使用者沒有輸入太神奇的數字 
+}
+$start = ($page-1)*$per;
+
+$sql_show ="select * from `invoices` where period='$period' && left(`date`,4)='$year' order by date DESC LIMIT $start, $per ";
+$rows_show =$pdo->query($sql_show)-> fetchAll();
+    // print_r($rows_show);
+
+    foreach ($rows_show as $row) {
     ?>
         <tr>
             <td><?= $row['code'] . "-" . $row['number'] . "<br>"; ?></td>
@@ -59,3 +100,9 @@ $rows = $pdo->query($sql)->fetchAll();
     }
     ?>
 </table>
+<?php
+
+for($i=1;$i<=$pages;$i++) { 
+    echo '<a href="?do=invoice_list&page='.$i.'">' . $i . '</a>'; 
+}
+?>

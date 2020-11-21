@@ -21,6 +21,9 @@
             color: red;
             font-weight: bolder;
         }
+        svg{
+            vertical-align: initial;
+        }
 
         .nav {
             height: 10vh;
@@ -36,6 +39,7 @@
 </head>
 
 <body>
+    <p>nav的hover效果加深</p>
     <nav class="navbar navbar-expand-lg navbar-light mx-5 ">
         <a href="index.php" class="h3 mt-2">統一發票紀錄與對獎</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
