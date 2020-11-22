@@ -5,6 +5,7 @@
         text-align: center !important;
     }
 </style>
+<h3 class="text-center">輸入獎號</h3>
 <div class="container">
 <form action="api/add_award_number.php" method="post">
     <table class="table table-bordered table-sm" summary="統一發票中獎號碼單">
