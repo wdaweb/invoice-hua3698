@@ -118,5 +118,5 @@ foreach ($awards as $award) {
             </tr>
         </tbody>
     </table>
-    <a href="?do=all_awards&year=<?=$year;?>&period=<?=$period;?>" class="m-auto"><button class="btn btn-primary btn-sm">對獎</button></a>
+    <button class="btn btn-primary btn-sm m-auto "><a href="?do=all_awards&year=<?=$year;?>&period=<?=$period;?>" class="text-light">對獎</a></button>
 </div>
