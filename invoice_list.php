@@ -63,7 +63,8 @@ $rows = $pdo->query($sql)->fetchAll();
         <td>消費金額</td>
         <td>操作</td>
     </tr>
-    <?php
+        
+<?php
 
 //分頁
 $sql_count="select count(*) from `invoices` where period='$period' && left(`date`,4)='$year'";

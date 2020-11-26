@@ -44,13 +44,103 @@ function errFeedBack($field){
 }
 
 
-// function find($table,$def){
-//     global $pdo;
-//     $sql="select * from $table where $def";
-//     $row=$pdo->query($sql)->fetch();
+//取得單一筆資料
+function find($table, $id)
+{
+    global $pdo;
+    $sql_part = "select * from $table where";
+    if (is_array($id)) {
+        foreach ($id as $key => $value) {
+            $tmp[] = sprintf("`%s`='%s'", $key, $value);
+        }
+        $sql = $sql_part . implode("&&", $tmp);
+    } else {
+        $sql = $sql_part . "id='$id'";
+    }
+    $row = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
-//     return $row;
-// }
+    return $row;
+}
 
+// ...$arg 會放進陣列裡存放，因此也可以不下參數->空陣列
+function all($table, ...$arg)
+{
+    global $pdo;
+    $sql_part = "select * from $table";
+
+    if (isset($arg[0])) {
+        if (is_array($arg[0])) {
+            //製作會在where後面的句子 -> where ` `=' ';
+            foreach ($arg[0] as $key => $value) {
+                $tmp[] = sprintf("`%s`='%s'", $key, $value);
+            }
+            $sql = $sql_part . " where " . implode("&&", $tmp);
+        } else {
+            $sql = $sql_part . $arg[0];
+        }
+    } else {
+        $sql = $sql_part;
+    }
+
+    if (isset($arg[1])) {
+        //製作皆在最後面的句子字串
+        $sql = $sql_part . $arg[1];
+    }
+    echo "<hr>" . $sql . "<br>";
+    return $pdo->query($sql)->fetchAll();
+}
+
+
+function del($table, $id){
+    global $pdo;
+    $sql_part = "delete from $table where";
+
+    if (is_array($id)) {
+        //製作會在where後面的句子 -> where ` `=' ';
+        foreach ($id as $key => $value) {
+            $tmp[] = sprintf("`%s`='%s'", $key, $value);
+        }
+        $sql = $sql_part . implode("&&", $tmp);
+    } else {
+        $sql = $sql_part . $id;
+    }
+
+    echo "<hr>" . $sql . "<br>";
+    $row = $pdo->exec($sql);
+    return $row;
+}
+
+
+function update($table,$array){
+    global $pdo;
+    $sql="update $table set ";
+    foreach ($array as $key => $value) {
+        if($key != 'id'){
+            $tmp[] = sprintf("`%s`='%s'", $key, $value);
+        }
+    }
+    $sql=$sql.implode(",",$tmp). " where `id`='{$array['id']}' ";
+    $pdo->exec($sql);
+}
+
+function insert($table,$array){
+    global $pdo;
+    $sql="insert into $table(`".implode("`,`",array_keys($array))."`) values('".implode("','",$array)."')";
+
+    $pdo->exec($sql);
+}
+
+//合併update&insert
+function save($table,$array){
+    if(isset($array['id'])){
+        update($table,$array);
+    }else{
+        insert($table,$array);
+    }
+}
+
+function to($url){
+    header("location:".$url);
+}
 
 ?>
