@@ -32,6 +32,11 @@ $rows = $pdo->query($sql)->fetchAll();
 
 
 <h3 class="text-center">發票存摺</h3>
+<ul>
+<li>重新切版</li>
+<li>顯示共有幾筆資料</li>
+<li></li>
+</ul>
 <div class="navbar d-flex justify-content-around p-0">
     <a href="?do=invoice_list&y=<?=$lastYear?>&p=<?=$lastPeriod?>" style="text-decoration: none;">
         <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
