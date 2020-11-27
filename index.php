@@ -5,7 +5,7 @@
     <!-- 選單區 -->
     <header class="fixed-top bg-light">
         <nav class="container navbar navbar-expand-lg navbar-light">
-            <a href="index.php" class="navbar-brand">
+            <a href="index.php" class="navbar-brand text-dark">
                 <img src="image/favicon.ico" width="25px" class="pb-2 mr-2">統一發票紀錄與對獎
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
