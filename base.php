@@ -1,3 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>統一發票紀錄及對獎系統</title>
+    <link rel="stylesheet" href="plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/style.css">
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- google font -->
+    <script src="https://kit.fontawesome.com/b6159c26a6.js" crossorigin="anonymous"></script> <!-- font awesome -->
+    <script src="plugins/jquery-3.5.1.min.js"></script>
+    <script src="plugins/bootstrap.bundle.min.js"></script>
+
+</head>
+
 <?php
 
 $dsn="mysql:host=localhost;dbname=invoice;charset=utf8";
@@ -48,7 +67,7 @@ function errFeedBack($field){
 function find($table, $id)
 {
     global $pdo;
-    $sql_part = "select * from $table where";
+    $sql_part = "select * from $table where ";
     if (is_array($id)) {
         foreach ($id as $key => $value) {
             $tmp[] = sprintf("`%s`='%s'", $key, $value);
@@ -93,7 +112,7 @@ function all($table, ...$arg)
 
 function del($table, $id){
     global $pdo;
-    $sql_part = "delete from $table where";
+    $sql_part = "delete from $table where ";
 
     if (is_array($id)) {
         //製作會在where後面的句子 -> where ` `=' ';
@@ -102,10 +121,9 @@ function del($table, $id){
         }
         $sql = $sql_part . implode("&&", $tmp);
     } else {
-        $sql = $sql_part . $id;
+        $sql = $sql_part . "id='$id'";
     }
 
-    echo "<hr>" . $sql . "<br>";
     $row = $pdo->exec($sql);
     return $row;
 }
@@ -141,6 +159,11 @@ function save($table,$array){
 
 function to($url){
     header("location:".$url);
+}
+
+function q($sql){
+    global $pdo;
+    return $pdo->query($sql)->fetchAll();
 }
 
 ?>

@@ -2,9 +2,6 @@
 
 include_once "../base.php";
 
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
 
 $row=find('invoices',$_POST['id']);
 
@@ -25,7 +22,7 @@ save('invoices',$row);
 //      where 
 //         `id`='{$_POST['id']}'";
 
-//$pdo->exec($sql);
+// $pdo->exec($sql);
 // 用exec不需要回傳資料
 // 如需要回傳資料才用query
 

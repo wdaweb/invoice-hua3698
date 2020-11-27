@@ -35,7 +35,7 @@ $rows = $pdo->query($sql)->fetchAll();
 <ul>
 <li>重新切版</li>
 <li>顯示共有幾筆資料</li>
-<li></li>
+<li>modal</li>
 </ul>
 <div class="navbar d-flex justify-content-around p-0">
     <a href="?do=invoice_list&y=<?=$lastYear?>&p=<?=$lastPeriod?>" style="text-decoration: none;">
