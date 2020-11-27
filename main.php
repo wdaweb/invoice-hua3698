@@ -1,13 +1,13 @@
-<div class="container">
     <div class="row">
         <div class="col-2">
-        <ul>
-            <li>美金飄落</li>
-            <li>中獎插圖</li>
-            <li>沒中獎插圖</li>
-            <li></li>
-            <li></li>
-        </ul></div>
+            <!-- <ul>
+                <li>美金飄落</li>
+                <li>中獎插圖</li>
+                <li>沒中獎插圖</li>
+                <li></li>
+                <li></li>
+            </ul> -->
+        </div>
         <div class="col-8">
             <div class="card">
                 <div class="card-body bg-light">
@@ -48,5 +48,3 @@
         </div>
         <div class="col-2"></div>
     </div>
-
-</div>

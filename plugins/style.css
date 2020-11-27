@@ -30,18 +30,12 @@ svg {
     vertical-align: initial;
 }
 
-nav {
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
 footer a.position-fixed{
     right: 5vh;    
     bottom: 5vh;
     z-index: 999;
     animation: bounce 2s ease infinite;
 }
-
 @keyframes bounce {
     0%,
     20%,

@@ -3,7 +3,7 @@
 
 <body>
     <!-- 選單區 -->
-    <header class="fixed-top bg-light">
+    <header class="sticky-top bg-light">
         <nav class="container navbar navbar-expand-lg navbar-light">
             <a href="index.php" class="navbar-brand text-dark">
                 <img src="image/favicon.ico" width="25px" class="pb-2 mr-2">統一發票紀錄與對獎
@@ -67,23 +67,20 @@
     </header>
 
 
-    <div class="jumbotron jumbotron-fluid px-5 m-0">
-        <div class="container">
-            <!-- <p>nav的hover效果加深</p> -->
+    <!-- <div class="jumbotron jumbotron-fluid "> -->
+    <div class="container py-5" style="min-height:680px">
 
-            <!-- <div class="col-lg-8 col-md-12 p-3 mx-auto"> -->
-            <?php
-            //這塊會根據輸入網址的值顯示不同區塊
-            if (isset($_GET['do'])) {
-                $file = $_GET['do'] . ".php";
-                $a = "active";
-                include $file;
-            } else {
-                include "main.php";
-            }
-            ?>
-            <!-- </div> -->
-        </div>
+        <?php
+        //這塊會根據輸入網址的值顯示不同區塊
+        if (isset($_GET['do'])) {
+            $file = $_GET['do'] . ".php";
+            $a = "active";
+            include $file;
+        } else {
+            include "main.php";
+        }
+        ?>
+
     </div>
     <footer class="bg-dark text-muted text-center py-2">
         <small>泰山職訓中心課程教材練習<br> copyright &#169; <span class="text-warning">05xxx設計</span> . All right reserved </small>
