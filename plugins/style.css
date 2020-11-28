@@ -32,11 +32,13 @@ a:link {
     padding-bottom: 6px;
     margin: 5px 70px;
 }
-.aaa {
+.eachInv {
     background: #999;
 }
 
-
+.btn-group>.btn-group:not(:first-child), .btn-group>.btn:not(:first-child){
+    margin-left: 0!important;
+}
 
 .number {
     font-size: 1.2rem;

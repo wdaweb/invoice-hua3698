@@ -51,6 +51,7 @@ $sql_show = "select * from `invoices` where period='$period' && left(`date`,4)='
 $rows_show = $pdo->query($sql_show)->fetchAll();
 ?>
 
+
 <h3 class="text-center">發票存摺</h3>
 <div class="row">
     <div class="col-12">
@@ -63,15 +64,15 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
             </span>
             <a href="?do=invoice_list&y=<?= $nextYear ?>&p=<?= $nextPeriod ?>"><i class="fas fa-chevron-right"></i></a>
         </div>
+        <div class="text-center my-3">一共存了
+            <span class='text-danger'><?= $rows_count[0]; ?></span>張發票，總花費
+            <span class='text-danger'><?= $rows_payment[0]; ?></span>元
+        </div>
+        <!-- <div class="text-info float-right">第<?= $page; ?>頁，共<?= $pages; ?>頁</div> -->
 
-        <table class="table text-center">
+        <table class="table text-center col-12">
             <tr>
-                <td colspan="6">一共存了<span class='text-danger'><?= $rows_count[0]; ?></span>
-                    張發票，總花費<span class='text-danger'><?= $rows_payment[0]; ?></span>元
-                </td>
-            </tr>
-            <tr>
-                <td></td>
+                <td>對獎結果</td>
                 <td>發票號碼</td>
                 <td>消費日期</td>
                 <td>消費金額</td>
@@ -84,7 +85,7 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
             ?>
                 <tr>
                     <!-- 單一發票對獎 -->
-                    <td class="aaa">
+                    <td class="eachInv">
                         <?php
                         $inv_id = $row['id'];
                         $inv_number = $row['number'];
@@ -157,15 +158,22 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
             ?>
         </table>
     </div>
+
+    <div class="btn-toolbar m-auto py-5">
+        <div class="btn-group text-center">
+            <?php
+            for ($i = 1; $i <= $pages; $i++) {
+                if ($i == $page) {
+                    echo "<a class='btn btn-danger text-white' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a>";
+                } else {
+                    echo "<a class='btn btn-outline-info text-info' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a>";
+                }
+            }
+            ?>
+        </div>
+        <div class="text-info ml-3 mt-2">
+            第<?= $page; ?>頁，共<?= $pages; ?>頁
+        </div>
+    </div>
+
 </div>
-<!-- <ul>
-    <li>顯示共有幾筆資料</li>
-    <li>modal</li>
-    </ul> -->
-
-<?php
-
-for ($i = 1; $i <= $pages; $i++) {
-    echo '<a href="?do=invoice_list&page=' . $i . '">' . $i . '</a>';
-}
-?>
