@@ -172,3 +172,35 @@ function save($table,$array){
                 </td>
             </tr>
         </tbody>  */
+
+
+        // <form action="api/add_invoice.php" method="post" class="mx-3 card-text">
+        //                 <div class="form-group row text-center">
+        //                     <label class="col-form-label">消費日期：</label>
+        //                     <input type="date" name="date" class="form-control">
+        //                 </div>
+        //                 <div class="form-group row text-center">
+        //                     <label class="col-form-label">期　　別：</label>
+        //                     <select name="period" class="custom-select">
+        //                         <option value="1">1、2月</option>
+        //                         <option value="2">3、4月</option>
+        //                         <option value="3">5、6月</option>
+        //                         <option value="4">7、8月</option>
+        //                         <option value="5">9、10月</option>
+        //                         <option value="6">11、12月</option>
+        //                     </select>
+        //                 </div>
+        //                 <div class="form-group row text-center">
+        //                     <label class="col-form-label">發票號碼：</label>
+        //                     <input type="text" name="code" placeholder="AB" class="form-control">
+        //                     <input type="number" name="number" placeholder="12345678" class="form-control">
+        //                 </div>
+        //                 <div class="form-group row text-center">
+        //                     <label class="col-form-label">發票金額：</label>
+        //                     <input type="number" name="payment" class="form-control">
+        //                 </div>
+        //                 <div class="text-center">
+        //                     <!-- <input type="submit" value="送出" class="btn btn-sm btn-primary"> -->
+        //                     <input type="submit" value="送出" class="col-2 btn badge-primary badge-pill">
+        //                 </div>
+        //             </form>

@@ -66,10 +66,8 @@
         </nav>
     </header>
 
-
-    <!-- <div class="jumbotron jumbotron-fluid "> -->
-    <div class="container py-5" style="min-height:680px">
-
+    <!-- 內容區 -->
+    <div class="container py-5" style="min-height:680px"  id="header">
         <?php
         //這塊會根據輸入網址的值顯示不同區塊
         if (isset($_GET['do'])) {
@@ -80,13 +78,11 @@
             include "main.php";
         }
         ?>
-
     </div>
+
     <footer class="bg-dark text-muted text-center py-2">
         <small>泰山職訓中心課程教材練習<br> copyright &#169; <span class="text-warning">05xxx設計</span> . All right reserved </small>
-        <a href="#cSlider" class="btn btn-outline-info position-fixed animate__animated animate__bounce">
-            <i class="far fa-arrow-alt-circle-up fa-2x"></i>
-        </a>
+        <a href="#header" class="btn btn-outline-info position-fixed"><i class="far fa-arrow-alt-circle-up fa-2x"></i></a>
     </footer>
 </body>
 

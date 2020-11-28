@@ -20,6 +20,24 @@ a:link {
     color: #ff6a6a !important;
 }
 
+/* main.php */
+.card{
+    border-radius: 1rem;
+    box-shadow: 0 0 10px 2px #666;
+} 
+
+/* invoice_list */
+#period {
+    border-bottom: #333 1px solid;
+    padding-bottom: 6px;
+    margin: 5px 70px;
+}
+.aaa {
+    background: #999;
+}
+
+
+
 .number {
     font-size: 1.2rem;
     color: red;

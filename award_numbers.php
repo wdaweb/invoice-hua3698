@@ -43,6 +43,7 @@ foreach ($awards as $award) {
         text-align: center !important;
     }
 </style>
+
 <h3 class="text-center">對獎專區</h3>
 <table class="table table-bordered table-hover my-3" summary="統一發票中獎號碼單">
     <tbody>
@@ -108,4 +109,9 @@ foreach ($awards as $award) {
         </tr>
     </tbody>
 </table>
-<button class="btn btn-primary btn-sm m-auto "><a href="?do=all_awards&year=<?= $year; ?>&period=<?= $period; ?>" class="text-light">對獎</a></button>
+<div class="m-auto">
+    <small>
+        領獎期間
+    </small>
+    <button class="btn btn-primary btn-sm w-100"><a href="?do=all_awards&year=<?= $year; ?>&period=<?= $period; ?>" class="text-light">對獎</a></button>
+</div>

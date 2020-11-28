@@ -25,9 +25,6 @@ $period = ceil(explode('-', $date)[1] / 2);  /* 得到該月所屬期數 */
 // echo "select * from award_numbers where year='$year' && period='$period'";
 $awards = $pdo->query("select * from award_numbers where year='$year' && period='$period'")->fetchAll();
 
-// echo "<pre>";
-// print_r($awards);
-// echo"</pre>";
 $all_result=-1;
 
 foreach ($awards as $award) {
