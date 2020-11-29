@@ -31,13 +31,13 @@ echo "<pre>";
 accept('number','發票號碼的欄位必填');
 length('number',8,8,'長度不足');
 
-$sql="insert into invoices (`".implode("`,`",array_keys($_POST))."`) values('".implode("','",$_POST)."')";
-echo $sql;
-$pdo->exec($sql); //execute執行
+save("invoices",$_POST);
+// $sql="insert into invoices (`".implode("`,`",array_keys($_POST))."`) values('".implode("','",$_POST)."')";
+// echo $sql;
+// $pdo->exec($sql); execute執行
 // select 用pdo query
 
-// header("location:../index.php?do=invoice_list");   //回到上一層用".."
-
+//回到上一層用".."
 if(empty($_SESSION['err'])){
     $pdo->exec($sql);
     header("location:../index.php?do=invoice_list");
