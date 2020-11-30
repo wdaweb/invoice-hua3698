@@ -1,6 +1,7 @@
 body {
     font-family: "Open Sans", "Noto Sans TC", Arial, sans-serif;
-    background: #df837c;
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    /* background:url(../image/3.jpg) no-repeat cover; */
     /* background: lightgray; */
 }
 
@@ -21,14 +22,26 @@ a:link {
     color: #ff6a6a !important;
 }
 
+a.btn{
+    border: 0;
+}
+/* a.btn.dropdown-toggle.dropdown-toggle-spilt.pl-0::after{
+    color: #ff6a6a !important;
+
+} */
+svg {
+    vertical-align: initial;
+}
+
 /* main.php */
 .card{
     border-radius: 1rem;
-    box-shadow: 0 0 10px 2px #999;
+    box-shadow: 0 0 8px 2px #999;
+
 } 
 
 /* invoice_list */
-#inv_list{
+.inv_list{
     border: 2px solid #f6f6f6;
     padding: 5%;
     background: #f6f6f6;
@@ -46,10 +59,13 @@ a:link {
 
 
 /* award_numbers */
-#arrow{
+#arrow::after{
+    content: ">>";
+    transition: transform 1s ease-out 2s;
+}
 
-    transition: transform 1s ease 2s;;
-    /* animation: arr 2s ease infinite; */
+#arrow::after:hover{
+    transform: translateX(15%);
 }
 /* @keyframes arr {
     50%{
@@ -78,9 +94,7 @@ a:link {
 
 
 
-svg {
-    vertical-align: initial;
-}
+
 
 footer a.position-fixed{
     right: 5vh;    

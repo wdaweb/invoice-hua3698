@@ -45,8 +45,8 @@ foreach ($awards as $award) {
 </style>
 <div class="row">
     <h3 class="col-12 text-center">對獎專區</h3>
-    <div class="col-1"></div>
-    <table class="col-10 table table-bordered table-hover my-3 bg-white">
+    <div class="col-2"></div>
+    <table class="col-8 table table-bordered table-hover my-3 bg-white shadow">
         <tbody>
             <tr class="table-info">
                 <th>獎項</th>
@@ -109,11 +109,9 @@ foreach ($awards as $award) {
             </tr>
         </tbody>
     </table>
-    <div class="col-1"></div>
+    <div class="col-2"></div>
 
     <div class="col-12 d-flex justify-content-center py-3">
-        <a href="?do=all_awards&year=<?= $year; ?>&period=<?= $period; ?>" class="col-2 position-relative font-weight-normal badge badge-pill badge-primary text-light p-3" style="font-size: 1rem;">中獎查詢
-        <span id="arrow" class="position-absoluted d-flex"> >></span>
-        </a>
+        <a href="?do=all_awards&year=<?= $year; ?>&period=<?= $period; ?>" class="col-2 font-weight-normal badge badge-pill badge-primary text-light p-3" style="font-size: 1rem;" id="arrow">中獎查詢</a>
     </div>
 </div>

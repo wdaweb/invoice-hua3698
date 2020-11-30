@@ -51,7 +51,7 @@ $sql_show = "select * from `invoices` where period='$period' && left(`date`,4)='
 $rows_show = $pdo->query($sql_show)->fetchAll();
 ?>
 
-<div class="row" id="inv_list">
+<div class="row inv_list">
     <h3 class="text-center col-12">發票存摺</h3>
     <div class="col-12">
         <div id="period" class="d-flex justify-content-around pb-3">
@@ -75,7 +75,6 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
                 <td>發票號碼</td>
                 <td>消費日期</td>
                 <td>消費金額</td>
-                <td>消費明細</td>
                 <td>操作</td>
             </tr>
 
@@ -143,7 +142,6 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
                     <td><?= $row['code'] . "-" . $row['number'] . "<br>"; ?></td>
                     <td><?= $row['date']; ?></td>
                     <td><?php echo "$" . "{$row['payment']}元"; ?></td>
-                    <td>空</td>
                     <td class="d-none d-md-block">
                         <a class="text-light" href="?do=edit_invoice&id=<?= $row['id']; ?>"><button class="btn btn-sm btn-primary">編輯</button></a>
                         <a class="text-light" href="?do=delete_invoice&id=<?= $row['id']; ?>"><button class="btn btn-sm btn-danger">刪除</button></a>
