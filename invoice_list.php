@@ -25,100 +25,129 @@ if ($period <= 1) {
 }
 
 // $period = ceil(date("m") / 2);
-$sql = "select * from `invoices` where period='$period' && left(`date`,4)='$year' order by date desc";
-$rows = $pdo->query($sql)->fetchAll();
+// $sql = "select * from `invoices` where period='$period' && left(`date`,4)='$year' order by date desc";
+// $rows = $pdo->query($sql)->fetchAll();
 
+//總花費
+$sql_payment = " select sum(`payment`) from `invoices` where period='$period' && left(`date`,4)='$year' ";
+$rows_payment = $pdo->query($sql_payment)->fetch(PDO::FETCH_NUM);
+
+//分頁
+$sql_count = "select count(*) from `invoices` where period='$period' && left(`date`,4)='$year'";
+$rows_count = $pdo->query($sql_count)->fetch(PDO::FETCH_NUM);
+$per = 10;
+$pages = ceil($rows_count[0] / $per);
+
+if (!isset($_GET["page"])) {
+    $page = 1; //設定起始頁 
+} else {
+    $page = intval($_GET["page"]); //確認頁數只能夠是數值資料 
+    $page = ($page > 0) ? $page : 1; //確認頁數大於零 
+    $page = ($pages > $page) ? $page : $pages; //確認使用者沒有輸入太神奇的數字 
+}
+$start = ($page - 1) * $per;
+
+$sql_show = "select * from `invoices` where period='$period' && left(`date`,4)='$year' order by date DESC LIMIT $start, $per ";
+$rows_show = $pdo->query($sql_show)->fetchAll();
 ?>
-<style>
-    #a {
-        border-bottom: #333 1px solid;
-        padding-bottom: 6px;
-        margin: 5px 70px;
-    }
-</style>
 
-<h3 class="text-center">發票存摺</h3>
-<div class="row">
+<div class="row" id="inv_list">
+    <h3 class="text-center col-12">發票存摺</h3>
     <div class="col-12">
-        <div id="a" class="d-flex justify-content-around pb-3">
-            <a href="?do=invoice_list&y=<?= $lastYear ?>&p=<?= $lastPeriod ?>">
-                <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
-                </svg>
-            </a>
+        <div id="period" class="d-flex justify-content-around pb-3">
+            <a href="?do=invoice_list&y=<?= $lastYear ?>&p=<?= $lastPeriod ?>"><i class="fas fa-chevron-left"></i></a>
             <span class="text-primary">
                 <?php
                 echo date("Y", strtotime($year)) . "年{$month[$period]}";
                 ?>
             </span>
-            <a href="?do=invoice_list&y=<?= $nextYear ?>&p=<?= $nextPeriod ?>">
-                <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z" />
-                </svg>
-            </a>
+            <a href="?do=invoice_list&y=<?= $nextYear ?>&p=<?= $nextPeriod ?>"><i class="fas fa-chevron-right"></i></a>
         </div>
-        <table class="table text-center">
+        <div class="text-center my-3">一共存了
+            <span class='text-danger'><?= $rows_count[0]; ?></span>張發票，總花費
+            <span class='text-danger'><?= $rows_payment[0]; ?></span>元
+        </div>
+        <!-- <div class="text-info float-right">第<?= $page; ?>頁，共<?= $pages; ?>頁</div> -->
+
+        <table class="table text-center col-12">
             <tr>
+                <td>對獎結果</td>
                 <td>發票號碼</td>
                 <td>消費日期</td>
                 <td>消費金額</td>
+                <td>消費明細</td>
                 <td>操作</td>
             </tr>
 
             <?php
-
-            //分頁
-            $sql_count = "select count(*) from `invoices` where period='$period' && left(`date`,4)='$year'";
-            $rows_count = $pdo->query($sql_count)->fetch();
-            $per = 10;
-            $pages = ceil($rows_count[0] / $per);
-
-            if (!isset($_GET["page"])) {
-                $page = 1; //設定起始頁 
-            } else {
-                $page = intval($_GET["page"]); //確認頁數只能夠是數值資料 
-                $page = ($page > 0) ? $page : 1; //確認頁數大於零 
-                $page = ($pages > $page) ? $page : $pages; //確認使用者沒有輸入太神奇的數字 
-            }
-            $start = ($page - 1) * $per;
-
-            $sql_show = "select * from `invoices` where period='$period' && left(`date`,4)='$year' order by date DESC LIMIT $start, $per ";
-            $rows_show = $pdo->query($sql_show)->fetchAll();
-            // print_r($rows_show);
-
             foreach ($rows_show as $row) {
             ?>
                 <tr>
+                    <!-- 單一發票對獎 -->
+                    <td class="<?= $tmp; ?>">
+                        <?php
+                        $inv_id = $row['id'];
+                        $inv_number = $row['number'];
+                        $inv_date = $row['date'];
+                        $inv_year = explode('-', $inv_date)[0];
+                        $inv_period = ceil(explode('-', $inv_date)[1] / 2);  /* 得到該月所屬期數 */
+                        $awards = $pdo->query("select * from award_numbers where year='$inv_year' && period='$inv_period'")->fetchAll();
+                        $all_result = -1;
+                        foreach ($awards as $award) {
+                            switch ($award['type']) {
+                                case 1:
+                                    if ($award['number'] == $inv_number) {
+                                        echo "中了特別獎";
+                                        $all_result = 1;
+                                    }
+                                    break;
+                                case 2:
+                                    if ($award['number'] == $inv_number) {
+                                        echo "中了特獎";
+                                        $all_result = 1;
+                                    }
+                                    break;
+                                case 3:
+                                    $result = -1;
+                                    for ($i = 5; $i >= 0; $i--) {
+                                        $target = mb_substr($award['number'], $i, 8 - $i, 'utf8');
+                                        $mynumber = mb_substr($inv_number, $i, 8 - $i, 'utf8');
+                                        if ($target == $mynumber) {
+                                            $result = $i;
+                                        } else {
+                                            break;
+                                            //continue
+                                        }
+                                    }
+                                    if ($result != -1) {
+                                        echo "中了{$awardStr[$result]}獎<br>";  //$awardStr 放在 base.php
+                                        $all_result = 1;
+                                    }
+                                    break;
+                                case 4:
+                                    if ($award['number'] == mb_substr($inv_number, 5, 3)) {
+                                        echo "中了增開六獎";
+                                        $all_result = 1;
+                                    }
+                                    break;
+                            }
+                        }
+                        if ($all_result !== -1) {
+                            $tmp = "text-danger";
+                        } else {
+                            $tmp = "text-secondary";
+                            echo "槓估了QQ";
+                        }
+                        ?>
+                    </td>
                     <td><?= $row['code'] . "-" . $row['number'] . "<br>"; ?></td>
                     <td><?= $row['date']; ?></td>
                     <td><?php echo "$" . "{$row['payment']}元"; ?></td>
+                    <td>空</td>
                     <td class="d-none d-md-block">
                         <a class="text-light" href="?do=edit_invoice&id=<?= $row['id']; ?>"><button class="btn btn-sm btn-primary">編輯</button></a>
                         <a class="text-light" href="?do=delete_invoice&id=<?= $row['id']; ?>"><button class="btn btn-sm btn-danger">刪除</button></a>
                         <!-- <a class="text-light" href="?do=award&id=<?= $row['id']; ?>"><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal">對獎</button></a> -->
-                        
-                        <!-- 問題在這裡↓ -->
-                        
-                        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal">對獎</button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </td>
                     <td class="d-block d-md-none">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -131,15 +160,47 @@ $rows = $pdo->query($sql)->fetchAll();
             ?>
         </table>
     </div>
+
+    <div class="pagination m-auto py-5 text-center">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <?php
+        for ($i = 1; $i <= $pages; $i++) {
+            if ($i == $page) {
+                echo "<li class='page-item'><a class='bg-info page-link text-white' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a></li>";
+            } else {
+                echo "<li class='page-item'><a class='page-link text-info' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a></li>";
+            }
+        }
+        ?>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <div class="text-info ml-3 mt-2">
+            第<?= $page; ?>頁，共<?= $pages; ?>頁
+        </div>
+    </div>
 </div>
-<!-- <ul>
-    <li>顯示共有幾筆資料</li>
-    <li>modal</li>
-    </ul> -->
 
-<?php
 
-for ($i = 1; $i <= $pages; $i++) {
-    echo '<a href="?do=invoice_list&page=' . $i . '">' . $i . '</a>';
-}
-?>
+<!-- <div class="btn-toolbar m-auto py-5">
+        <div class="btn-group text-center">
+        <?php
+        for ($i = 1; $i <= $pages; $i++) {
+            if ($i == $page) {
+                echo "<a class='btn btn-danger text-white' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a>";
+            } else {
+                echo "<a class='btn btn-outline-info text-info' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a>";
+            }
+        }
+        ?>
+        </div>
+        <div class="text-info ml-3 mt-2">
+            第<?= $page; ?>頁，共<?= $pages; ?>頁
+        </div>
+    </div> -->
