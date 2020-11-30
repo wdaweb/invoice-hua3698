@@ -51,9 +51,8 @@ $sql_show = "select * from `invoices` where period='$period' && left(`date`,4)='
 $rows_show = $pdo->query($sql_show)->fetchAll();
 ?>
 
-
-<h3 class="text-center">發票存摺</h3>
-<div class="row">
+<div class="row" id="inv_list">
+    <h3 class="text-center col-12">發票存摺</h3>
     <div class="col-12">
         <div id="period" class="d-flex justify-content-around pb-3">
             <a href="?do=invoice_list&y=<?= $lastYear ?>&p=<?= $lastPeriod ?>"><i class="fas fa-chevron-left"></i></a>
@@ -85,7 +84,7 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
             ?>
                 <tr>
                     <!-- 單一發票對獎 -->
-                    <td class="eachInv">
+                    <td class="<?= $tmp; ?>">
                         <?php
                         $inv_id = $row['id'];
                         $inv_number = $row['number'];
@@ -133,7 +132,10 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
                                     break;
                             }
                         }
-                        if ($all_result == -1) {
+                        if ($all_result !== -1) {
+                            $tmp = "text-danger";
+                        } else {
+                            $tmp = "text-secondary";
                             echo "槓估了QQ";
                         }
                         ?>
@@ -159,21 +161,46 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
         </table>
     </div>
 
-    <div class="btn-toolbar m-auto py-5">
-        <div class="btn-group text-center">
-            <?php
-            for ($i = 1; $i <= $pages; $i++) {
-                if ($i == $page) {
-                    echo "<a class='btn btn-danger text-white' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a>";
-                } else {
-                    echo "<a class='btn btn-outline-info text-info' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a>";
-                }
+    <div class="pagination m-auto py-5 text-center">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <?php
+        for ($i = 1; $i <= $pages; $i++) {
+            if ($i == $page) {
+                echo "<li class='page-item'><a class='bg-info page-link text-white' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a></li>";
+            } else {
+                echo "<li class='page-item'><a class='page-link text-info' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a></li>";
             }
-            ?>
-        </div>
+        }
+        ?>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
         <div class="text-info ml-3 mt-2">
             第<?= $page; ?>頁，共<?= $pages; ?>頁
         </div>
     </div>
-
 </div>
+
+
+<!-- <div class="btn-toolbar m-auto py-5">
+        <div class="btn-group text-center">
+        <?php
+        for ($i = 1; $i <= $pages; $i++) {
+            if ($i == $page) {
+                echo "<a class='btn btn-danger text-white' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a>";
+            } else {
+                echo "<a class='btn btn-outline-info text-info' href='?do=invoice_list&page=" . $i . "'>" . $i . "</a>";
+            }
+        }
+        ?>
+        </div>
+        <div class="text-info ml-3 mt-2">
+            第<?= $page; ?>頁，共<?= $pages; ?>頁
+        </div>
+    </div> -->

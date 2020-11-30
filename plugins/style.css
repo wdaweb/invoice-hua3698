@@ -1,6 +1,7 @@
 body {
     font-family: "Open Sans", "Noto Sans TC", Arial, sans-serif;
-    background: #e6e6e6;
+    background: #df837c;
+    /* background: lightgray; */
 }
 
 a:link {
@@ -23,28 +24,59 @@ a:link {
 /* main.php */
 .card{
     border-radius: 1rem;
-    box-shadow: 0 0 10px 2px #666;
+    box-shadow: 0 0 10px 2px #999;
 } 
 
 /* invoice_list */
+#inv_list{
+    border: 2px solid #f6f6f6;
+    padding: 5%;
+    background: #f6f6f6;
+    box-shadow: 0 0 6px 6px #999;
+}
+
 #period {
     border-bottom: #333 1px solid;
     padding-bottom: 6px;
     margin: 5px 70px;
 }
-.eachInv {
+/* .eachInv {
     background: #999;
-}
+} */
 
-.btn-group>.btn-group:not(:first-child), .btn-group>.btn:not(:first-child){
-    margin-left: 0!important;
+
+/* award_numbers */
+#arrow{
+
+    transition: transform 1s ease 2s;;
+    /* animation: arr 2s ease infinite; */
 }
+/* @keyframes arr {
+    50%{
+        transform: translateX(5%);
+    }
+    100%{
+    transform: translateX(0%);
+    }
+} */
+
+
+
 
 .number {
     font-size: 1.2rem;
     color: red;
     font-weight: bolder;
 }
+
+
+
+
+
+
+
+
+
 
 svg {
     vertical-align: initial;

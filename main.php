@@ -43,7 +43,7 @@
                                 </div>
                                 <input type="number" name="payment" class="form-control" id="dollar" placeholder="888" required>
                                 <div class="input-group-append">
-                                    <span class="input-group-text">元</span>
+                                    <span class="input-group-text">dollars</span>
                                 </div>
                             </div>
                         </div>

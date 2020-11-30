@@ -67,23 +67,25 @@
     </header>
 
     <!-- 內容區 -->
-    <div class="container py-5" style="min-height:680px"  id="header">
-        <?php
-        //這塊會根據輸入網址的值顯示不同區塊
-        if (isset($_GET['do'])) {
-            $file = $_GET['do'] . ".php";
-            $a = "active";
-            include $file;
-        } else {
-            include "main.php";
-        }
-        ?>
+    <div class="container py-5" style="min-height:680px" id="header">
+
+            <?php
+            //這塊會根據輸入網址的值顯示不同區塊
+            if (isset($_GET['do'])) {
+                $file = $_GET['do'] . ".php";
+                $a = "active";
+                include $file;
+            } else {
+                include "main.php";
+            }
+            ?>
+        <!-- </div> -->
     </div>
 
-    <footer class="bg-dark text-muted text-center py-2">
-        <small>泰山職訓中心課程教材練習<br> copyright &#169; <span class="text-warning">05xxx設計</span> . All right reserved </small>
+    <!-- <footer class="bg-dark text-muted text-center py-2">
         <a href="#header" class="btn btn-outline-info position-fixed"><i class="far fa-arrow-alt-circle-up fa-2x"></i></a>
-    </footer>
+        <small>泰山職訓中心課程教材練習<br> copyright &#169; <span class="text-warning">05xxx設計</span> . All right reserved </small>
+    </footer> -->
 </body>
 
 </html>
