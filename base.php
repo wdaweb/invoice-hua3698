@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>統一發票紀錄及對獎系統</title>
+    <title><?= title(); ?>統一發票紀錄與對獎</title>
     <link rel="stylesheet" href="plugins/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/style.css">
     <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
@@ -40,6 +40,22 @@ session_start();
     $m = ceil(date('m') / 2);
 
 $awardStr=['頭','二','三','四','五','六'];
+
+function title(){
+    if(isset($_GET['do'])){
+        switch ($_GET['do']){
+            case 'invoice_list':
+                echo "發票存摺 | ";
+            break;
+            case 'award_numbers':   
+                echo "開獎號碼 | ";
+            break;
+            case 'add_awards':  
+                echo "輸入獎號 | ";
+            break;
+        }
+    }
+}
 
 function accept($field,$msg='此欄位不得為空'){
     if(empty($_POST[$field])){

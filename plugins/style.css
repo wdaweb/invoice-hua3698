@@ -1,8 +1,7 @@
 body {
     font-family: "Open Sans", "Noto Sans TC", Arial, sans-serif;
-    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
-    /* background:url(../image/3.jpg) no-repeat cover; */
-    /* background: lightgray; */
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 80%);
+    background-size: 150% 150%;
 }
 
 a:link {
@@ -35,7 +34,7 @@ svg {
 
 /* main.php */
 .card{
-    border-radius: 1rem;
+    border-radius: 10px;
     box-shadow: 0 0 8px 2px #999;
 
 } 
