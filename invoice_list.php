@@ -51,9 +51,24 @@ $sql_show = "select * from `invoices` where period='$period' && left(`date`,4)='
 $rows_show = $pdo->query($sql_show)->fetchAll();
 ?>
 
+<style>
+        .inv_list{
+            animation: fadeInUp 2s;
+        }
+        @keyframes fadeInUp{
+    0%{
+        opacity:0;
+        transform:translate3d(0,20%,0)}
+    to{
+        opacity:1;
+        transform:translateZ(0)}
+}
+    </style>
+
 <div class="row inv_list">
     <h3 class="text-center col-12">發票存摺</h3>
-    <div class="col-12">
+    <div class="col-1"></div>
+    <div class="col-10">
         <div id="period" class="d-flex justify-content-around pb-3">
             <a href="?do=invoice_list&y=<?= $lastYear ?>&p=<?= $lastPeriod ?>"><i class="fas fa-chevron-left"></i></a>
             <span class="text-primary">
@@ -83,7 +98,7 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
             ?>
                 <tr>
                     <!-- 單一發票對獎 -->
-                    <td class="<?= $tmp; ?>">
+                    <td>
                         <?php
                         $inv_id = $row['id'];
                         $inv_number = $row['number'];
@@ -96,13 +111,13 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
                             switch ($award['type']) {
                                 case 1:
                                     if ($award['number'] == $inv_number) {
-                                        echo "中了特別獎";
+                                        echo "<span class='text-danger'>中了特別獎<span>";
                                         $all_result = 1;
                                     }
                                     break;
                                 case 2:
                                     if ($award['number'] == $inv_number) {
-                                        echo "中了特獎";
+                                        echo "<span class='text-danger'>中了特獎<span>";
                                         $all_result = 1;
                                     }
                                     break;
@@ -119,24 +134,19 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
                                         }
                                     }
                                     if ($result != -1) {
-                                        echo "中了{$awardStr[$result]}獎<br>";  //$awardStr 放在 base.php
+                                        echo "<span class='text-danger'>中了{$awardStr[$result]}獎<span>";  //$awardStr 放在 base.php
                                         $all_result = 1;
                                     }
                                     break;
                                 case 4:
                                     if ($award['number'] == mb_substr($inv_number, 5, 3)) {
-                                        echo "中了增開六獎";
+                                        echo "<span class='text-danger'>中了增開六獎<span>";
                                         $all_result = 1;
                                     }
                                     break;
                             }
                         }
-                        if ($all_result !== -1) {
-                            $tmp = "text-danger";
-                        } else {
-                            $tmp = "text-secondary";
-                            echo "槓估了QQ";
-                        }
+                        if ($all_result == -1) echo "槓估了QQ";
                         ?>
                     </td>
                     <td><?= $row['code'] . "-" . $row['number'] . "<br>"; ?></td>
@@ -158,6 +168,8 @@ $rows_show = $pdo->query($sql_show)->fetchAll();
             ?>
         </table>
     </div>
+    <div class="col-1"></div>
+
 
     <div class="pagination m-auto py-5 text-center">
         <li class="page-item">

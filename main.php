@@ -1,7 +1,22 @@
+    <style>
+        .card{
+            animation: fadeInUp 2s;
+        }
+        @keyframes fadeInUp{
+    0%{
+        opacity:0;
+        transform:translate3d(0,40%,0)}
+    to{
+        opacity:1;
+        transform:translateZ(0)}
+}
+    </style>
+
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
             <div class="card">
+            <!-- <div class="card animate__animated animate__fadeInUp animate__slower"> -->
                 <div class="card-body p-5">
                     <h5 class="card-title pb-3">請輸入發票資訊▼</h5>
                     <form action="api/add_invoice.php" method="post" class="card-text row">
@@ -56,37 +71,3 @@
         </div>
         <div class="col-2"></div>
     </div>
-
-    <!-- <article class="container py-5">
-                        <form class="row" method="post">
-                            
-                            
-                            <div class="form-group col-12">
-                                <label for="cid_msg">需求說明</label>
-                                <textarea class="form-control" id="cid_msg" rows="3" placeholder="Writer Your Message..."></textarea>
-                            </div>
-                            <div class="form-group col-12 text-center">
-                                <small class="text-muted">請如實填寫便於信件回覆，我們保證不隨意公開您的留言資訊</small>
-                                <hr class="border-secondary">
-                                <button class="btn btn-primary" type="submit">確認送出</button>
-                            </div>
-                        </form>
-                    </article> -->
-
-
-    <!-- <form action="api/add_invoice.php" method="post" class="mx-3 card-text">
-
-                        <div class="form-group row text-center">
-                            <label class="col-form-label">發票號碼：</label>
-                            <input type="text" name="code" placeholder="AB" class="form-control">
-                            <input type="number" name="number" placeholder="12345678" class="form-control">
-                        </div>
-                        <div class="form-group row text-center">
-                            <label class="col-form-label">發票金額：</label>
-                            <input type="number" name="payment" class="form-control">
-                        </div>
-                        <div class="form-group col-12 text-center">
-                            <!-- <input type="submit" value="送出" class="btn btn-sm btn-primary"> -->
-    <!-- <input type="submit" value="送出" class="btn badge-primary badge-pill">
-                        </div>
-                    </form> -->

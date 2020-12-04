@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="plugins/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/style.css">
     <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />  <!-- animation -->
     <link rel="preconnect" href="https://fonts.gstatic.com"> <!-- google font字型 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -87,14 +87,14 @@ function errFeedBack($field){
 function find($table, $id)
 {
     global $pdo;
-    $sql_part = "select * from $table where ";
+    $sql = "select * from $table where ";
     if (is_array($id)) {
         foreach ($id as $key => $value) {
             $tmp[] = sprintf("`%s`='%s'", $key, $value);
         }
-        $sql = $sql_part . implode("&&", $tmp);
+        $sql = $sql . implode("&&", $tmp);
     } else {
-        $sql = $sql_part . "id='$id'";
+        $sql = $sql . "id='$id'";
     }
     $row = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
@@ -105,7 +105,7 @@ function find($table, $id)
 function all($table, ...$arg)
 {
     global $pdo;
-    $sql_part = "select * from $table";
+    $sql = "select * from $table";
 
     if (isset($arg[0])) {
         if (is_array($arg[0])) {
@@ -113,17 +113,17 @@ function all($table, ...$arg)
             foreach ($arg[0] as $key => $value) {
                 $tmp[] = sprintf("`%s`='%s'", $key, $value);
             }
-            $sql = $sql_part . " where " . implode("&&", $tmp);
+            $sql = $sql . " where " . implode("&&", $tmp);
         } else {
-            $sql = $sql_part . $arg[0];
+            $sql = $sql . $arg[0];
         }
     } else {
-        $sql = $sql_part;
+        $sql = $sql;
     }
 
     if (isset($arg[1])) {
         //製作皆在最後面的句子字串
-        $sql = $sql_part . $arg[1];
+        $sql = $sql . $arg[1];
     }
     echo "<hr>" . $sql . "<br>";
     return $pdo->query($sql)->fetchAll();
@@ -132,16 +132,16 @@ function all($table, ...$arg)
 
 function del($table, $id){
     global $pdo;
-    $sql_part = "delete from $table where ";
+    $sql = "delete from $table where ";
 
     if (is_array($id)) {
         //製作會在where後面的句子 -> where ` `=' ';
         foreach ($id as $key => $value) {
-            $tmp[] = sprintf("`%s`='%s'", $key, $value);
+            $tmp[] = sprintf("`%s`='%s'", $key, $value);  //%s 字串的意思
         }
-        $sql = $sql_part . implode("&&", $tmp);
+        $sql = $sql . implode("&&", $tmp);
     } else {
-        $sql = $sql_part . "id='$id'";
+        $sql = $sql . "id='$id'";
     }
 
     $row = $pdo->exec($sql);
