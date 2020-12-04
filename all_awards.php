@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary"><a href="index.php" class="text-light">存發票去</a></button>
+                <button type="button" class="btn btn-primary"><a href="index.php" class="text-light">存發票去Go</a></button>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary"><a href="index.php" class="text-light">存發票去</a></button>
+                <button type="button" class="btn btn-primary"><a href="index.php" class="text-light">存發票去Go</a></button>
             </div>
         </div>
     </div>
@@ -130,16 +130,12 @@
 
     if ($all_result == -1) {
     ?>
-        <script>
-            $("#aaa").modal('show');
-        </script>
+        <script>$("#aaa").modal('show');</script>
     <?php
         echo "<img src='image/empty.jpg' class='w-50 m-auto'>";
     } else {
     ?>
-        <script>
-            $("#ooo").modal('show');
-        </script>
+        <script>$("#ooo").modal('show');</script>
     <?php
         echo "<img src='image/a.png' class='w-50 m-auto'>";
     }

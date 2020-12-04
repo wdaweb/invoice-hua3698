@@ -36,7 +36,6 @@ svg {
 .card{
     border-radius: 10px;
     box-shadow: 0 0 8px 2px #999;
-
 } 
 
 /* invoice_list */
@@ -44,7 +43,7 @@ svg {
     border: 2px solid #f6f6f6;
     padding: 5%;
     background: #f6f6f6;
-    box-shadow: 0 0 6px 6px #999;
+    box-shadow: 0 0 10px 3px #ccc;
 }
 
 #period {
