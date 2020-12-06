@@ -1,3 +1,17 @@
+<?php
+
+function errFeedBack($field){
+    if(!empty($_SESSION['error'][$field])){
+
+        foreach($_SESSION['error'][$field] as $err){
+            echo "<div style='font-size:12px;color:red'>";
+            echo $err;
+            echo "</div>";
+        }
+    }
+}
+?>
+    
     <style>
         .card{
             animation: fadeInUp 2s;
@@ -19,7 +33,7 @@
             <!-- <div class="card animate__animated animate__fadeInUp animate__slower"> -->
                 <div class="card-body p-5">
                     <h5 class="card-title pb-3">請輸入發票資訊▼</h5>
-                    <form action="api/add_invoice.php" method="post" class="card-text row">
+                    <form action="api/add_invoice.php" method="post" class="card-text row" novalidate>
                         <div class="form-group col-12 col-lg-6">
                             <label for="pay_date">消費日期：</label>
                             <input type="date" name="date" class="form-control" id="pay_date" required>
@@ -41,6 +55,7 @@
                                 <input type="text" name="code" placeholder=" AB " class="form-control col-4">
                                 <input type="number" name="number" placeholder=" 12345678 " class="form-control col-8">
                             </div>
+                            <?php errFeedBack('number'); ?>
                         </div>
                         <div class="form-group col-12 col-lg-6">
                             <label for="dollar">發票金額：</label>

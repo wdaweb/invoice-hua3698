@@ -44,7 +44,7 @@ foreach ($awards as $award) {
     }
 </style>
 <div class="row">
-    <h3 class="col-12 text-center">對獎專區</h3>
+    <h3 class="col-12 text-center">開獎號碼</h3>
     <div class="col-2"></div>
     <table class="col-8 table table-bordered table-hover my-3 bg-white shadow">
         <tbody>
