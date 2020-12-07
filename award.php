@@ -76,6 +76,5 @@ if($all_result==-1){
 }
 ?>
 
-<a href="?do=invoice_list" class="d-flex justify-content-end">回上一頁</a>
 
 <!-- 當中獎了 如何顯示金額 -->

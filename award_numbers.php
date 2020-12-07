@@ -43,7 +43,7 @@ foreach ($awards as $award) {
         text-align: center !important;
     }
 </style>
-<div class="row inv_list">
+<div class="row">
     <div class="col-2"></div>
     <div class="col-8 ">
         <h3 class="col-12 text-center">對獎專區</h3>

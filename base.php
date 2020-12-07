@@ -8,13 +8,12 @@
     <title><?= title(); ?>統一發票紀錄與對獎</title>
     <link rel="stylesheet" href="plugins/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/style.css">
-    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">  <!-- logo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />  <!-- animation -->
-    <link rel="preconnect" href="https://fonts.gstatic.com"> <!-- google font字型 -->
+    <!-- google font字型 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Open+Sans&display=swap" rel="stylesheet">
 
-
-    <!-- google font -->
     <script src="https://kit.fontawesome.com/b6159c26a6.js" crossorigin="anonymous"></script> <!-- font awesome -->
     <script src="plugins/jquery-3.5.1.min.js"></script>
     <script src="plugins/bootstrap.bundle.min.js"></script>
@@ -29,17 +28,18 @@ $pdo=new PDO($dsn,'root','');
 date_default_timezone_set("Asia/Taipei");
 session_start();
 
-    $month = [
-        1 => "1、2月",
-        2 => "3、4月",
-        3 => "5、6月",
-        4 => "7、8月",
-        5 => "9、10月",
-        6 => "11、12月"
-    ];
-    $m = ceil(date('m') / 2);
+$month = [
+    1 => "1、2月",
+    2 => "3、4月",
+    3 => "5、6月",
+    4 => "7、8月",
+    5 => "9、10月",
+    6 => "11、12月"
+];
+$m = ceil(date('m') / 2);
 
 $awardStr=['頭','二','三','四','五','六'];
+$awardDollar=['20萬元','4萬元','1萬元','4000元','1000元','200元'];
 
 function title(){
     if(isset($_GET['do'])){
@@ -53,39 +53,15 @@ function title(){
             case 'add_awards':  
                 echo "輸入獎號 | ";
             break;
+            case 'all_awards':
+                echo "中獎查詢 | ";
+            break;
         }
     }
 }
-
-function accept($field,$msg='此欄位不得為空'){
-    if(empty($_POST[$field])){
-        $_SESSION['err'][$field]['empty']=$msg;
-    }
-}
-
-function length($field,$min,$max,$msg="長度不足"){
-    if(strlen($_POST[$field])>$max || strlen($_POST[$field]) < $min){
-        $_SESSION['err'][$field]['len']=$msg;
-    }
-
-}
-
-
-function errFeedBack($field){
-    if(!empty($_SESSION['err'][$field])){
-
-        foreach($_SESSION['err'][$field] as $err){
-            echo "<div style='font-size:12px;color:red'>";
-            echo $err;
-            echo "</div>";
-        }
-    }
-}
-
 
 //取得單一筆資料
-function find($table, $id)
-{
+function find($table, $id){
     global $pdo;
     $sql = "select * from $table where ";
     if (is_array($id)) {
@@ -97,8 +73,10 @@ function find($table, $id)
         $sql = $sql . "id='$id'";
     }
     $row = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-
-    return $row;
+    echo "<pre>";
+    print_r ($tmp);
+    echo"</pre>" ;
+    // return $row;
 }
 
 // ...$arg 會放進陣列裡存放，因此也可以不下參數->空陣列

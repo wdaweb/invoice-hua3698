@@ -1,3 +1,14 @@
+<?php
+
+if(isset($_GET['year']) && isset($_GET['period'])){
+    $year=$_GET['year'];
+    $period=$_GET['period'];
+}else {
+    $year = date("Y");
+    $period = ceil(date("m") / 2);
+}
+?>
+
 <div id="aaa" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -42,23 +53,14 @@
         <?php
         include_once "base.php";
 
-        $period_str = [
-            1 => '1、2月',
-            2 => '3、4月',
-            3 => '5、6月',
-            4 => '7、8月',
-            5 => '9、10月',
-            6 => '11、12月'
-        ];
-
-        echo "你要對的發票是" . $_GET['year'] . "年";
-        echo $period_str[$_GET['period']] . "的發票";
+        echo "你要對的發票是" . $year . "年";
+        echo $month[$period]. "的發票";
         ?>
     </h5>
 
     <?php
     //撈出該期的發票
-    $sql = "select * from invoices where substr(`date`,1,4)='{$_GET['year']}'  && `period`='{$_GET['period']}' order by date desc";
+    $sql = "select * from invoices where substr(`date`,1,4)='$year'  && `period`='$period' order by date desc";
     $invoices = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     // 找出年份的其他方法
     // left(`date`,4)='{$_GET['year']}' 
@@ -66,7 +68,7 @@
 
 
     //撈出該期的開獎獎號
-    $sql = " select * from award_numbers where `year`='{$_GET['year']}' && `period`='{$_GET['period']}'";
+    $sql = " select * from award_numbers where `year`='$year' && `period`='$period'";
     $award_numbers = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 
@@ -86,15 +88,19 @@
             switch ($award['type']) {
                 case 1:
                     if ($award['number'] == $number) {
-                        echo "<br>號碼=" . $number . "<br>";
-                        echo "中了特別獎";
+                        echo "<div class='col-12 text-center'>";
+                        echo "★ 發票號碼：" . $number . "、消費日期：".$date;
+                        echo "、中獎獎別：特別獎、中獎金額：<span class='text-danger'>1千萬元</span>";
+                        echo "</div>";
                         $all_result = 1;
                     }
                     break;
                 case 2:
                     if ($award['number'] == $number) {
-                        echo "<br>號碼=" . $number . "<br>";
-                        echo "中了特獎";
+                        echo "<div class='col-12 text-center'>";
+                        echo "★ 發票號碼：" . $number . "、消費日期：".$date;
+                        echo "、中獎獎別：特獎、中獎金額：<span class='text-danger'>2百萬元</span>";
+                        echo "</div>";
                         $all_result = 1;
                     }
                     break;
@@ -107,20 +113,25 @@
                             $result = $i;
                         } else {
                             break;
-                            //continue
                         }
                     }
                     if ($result != -1) {
-                        echo "<br>號碼=" . $number . "<br>";
-                        echo "中了{$awardStr[$result]}獎<br>";  //$awardStr 放在 base.php
+                        echo "<div class='col-12 text-center'>";
+                        echo "★ 發票號碼：" . $number . "、消費日期：".$date;
+                        echo "、中獎獎別：{$awardStr[$result]}獎、中獎金額：<span class='text-danger'>{$awardDollar[$result]}</span>";
+                        echo "</div>";
+
+                        //$awardStr 放在 base.php
                         $all_result = 1;
                     }
                     break;
 
                 case 4:
                     if ($award['number'] == mb_substr($number, 5, 3)) {
-                        echo "<br>號碼=" . $number . "<br>";
-                        echo "中了增開六獎";
+                        echo "<div class='col-12 text-center'>";
+                        echo "★ 發票號碼：" . $number . "、消費日期：".$date;
+                        echo "、中獎獎別：增開六獎、中獎金額：<span class='text-danger'>200元</span>";
+                        echo "</div>";
                         $all_result = 1;
                     }
                     break;
@@ -129,7 +140,7 @@
     }
 
     if ($all_result == -1) {
-    ?>
+        ?>
         <script>$("#aaa").modal('show');</script>
     <?php
         echo "<img src='image/empty.jpg' class='w-50 m-auto'>";
