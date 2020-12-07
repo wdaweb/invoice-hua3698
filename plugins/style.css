@@ -1,0 +1,66 @@
+body {
+    font-family: "Open Sans", "Noto Sans TC", Arial, sans-serif;
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 80%);
+    background-size: 150% 150%;
+}
+
+a:link {
+    text-decoration: none;
+}
+.navbar-brand{
+    /* text-shadow: 5px 5px 5px #ccc; */
+    color: #666 !important;
+    font-size: 1.5rem;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #ff6a6a !important;
+}
+
+.navbar-light .navbar-nav .active .nav-link {
+    color: #ff6a6a !important;
+}
+
+a.btn{
+    border: 0;
+}
+/* a.btn.dropdown-toggle.dropdown-toggle-spilt.pl-0::after{
+    color: #ff6a6a !important;
+
+} */
+svg {
+    vertical-align: initial;
+}
+
+/* main.php */
+.card{
+    border-radius: 10px;
+    box-shadow: 0 0 8px 2px #999;
+} 
+
+/* invoice_list */
+.inv_list{
+    border: 2px solid #f6f6f6;
+    padding: 5%;
+    background: #f6f6f6;
+    box-shadow: 0 0 10px 3px #ccc;
+}
+
+#period {
+    border-bottom: #333 1px solid;
+    padding-bottom: 6px;
+    margin: 5px 70px;
+}
+/* .eachInv {
+    background: #999;
+} */
+
+
+/* award_numbers */
+
+
+.number {
+    font-size: 1.2rem;
+    color: red;
+    font-weight: bolder;
+}
